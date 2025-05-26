@@ -1,0 +1,34 @@
+:host {
+
+      header {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+      }
+
+      section {
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            div {
+
+                  border: 4px solid #0d6efd;
+                  margin: .5rem;
+                  padding: .5rem;
+                  border-radius: 2%;
+                  min-width: 60%;
+                  height: 35rem;
+            }
+
+      }
+
+      .div-list {
+            overflow: auto;
+            height: 35rem;
+            max-height: 35rem;
+      }
+}

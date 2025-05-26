@@ -1,0 +1,62 @@
+<form class="form" [formGroup]="SchedulingForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="title" class="form-label">
+      <span class="required"></span>user name</label>
+  
+    <input type="text" formControlName="userName" required class="form-control" />
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">email</label>
+    <textarea formControlName="email" class="form-control"></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="schedulingTypes" class="form-label">type</label>
+    <select formControlName="schedulingType" class="form-select">
+      <option [value]="SchedulingTypes.Bitcoine">{{ SchedulingTypes.Bitcoine }}</option>
+      <option [value]="SchedulingTypes.Litecoin">{{ SchedulingTypes.Litecoin }}</option>
+      <option [value]="SchedulingTypes.Ethereum">{{ SchedulingTypes.Ethereum }}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="frequency" class="form-label">frequency</label>
+    <select formControlName="frequency" class="form-select" >
+      <option [value]="frequency.daily">{{ frequency.daily }}</option>
+      <option [value]="frequency.date">{{ frequency.date }}</option>
+      <option [value]="frequency.weekly">{{ frequency.weekly }}</option>
+      <option [value]="frequency.monthly">{{ frequency.monthly }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="SchedulingForm.get('frequency')?.value === frequency.daily">
+    <label for="time" class="form-label">Select time of day</label>
+    <input type="time" formControlName="time" class="form-control" />
+  </div>
+
+  <div *ngIf="SchedulingForm.get('frequency')?.value === frequency.weekly">
+    <label for="time" class="form-label">Select day of the week</label>
+    <select formControlName="time" class="form-select">
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+      <option value="Saturday">Saturday</option>
+      <option value="Sunday">Sunday</option>
+    </select>
+  </div>
+
+  <div *ngIf="SchedulingForm.get('frequency')?.value === frequency.monthly">
+    <label for="time" class="form-label">Select date of the month</label>
+    <input type="number" formControlName="time" min="1" max="31" class="form-control" />
+  </div>
+
+  <div *ngIf="SchedulingForm.get('frequency')?.value === frequency.date">
+    <label for="time" class="form-label">Select specific date</label>
+    <input type="date" formControlName="time" class="form-control" />
+  </div>
+
+  <div class="submit">
+    <button type="submit" [class.disabled]="!SchedulingForm.valid" class="btn btn-primary"
+    [innerText]="(isEdit$ | async) ? 'edit' : 'add'"></button>
+  </div>
+</form>

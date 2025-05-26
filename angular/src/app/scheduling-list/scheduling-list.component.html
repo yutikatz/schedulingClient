@@ -1,0 +1,36 @@
+@if (schedulings$ | async; as schedulings) {
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Type</th>
+            <th>Frequency</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @for ( scheduling of schedulings; track scheduling.userId) {
+        <tr>
+            <td [innerText]="scheduling.userName"> </td>
+            <td [innerText]="scheduling.email"> </td>
+            <td [innerText]="scheduling.schedulingType"> </td>
+            <td [innerText]="scheduling.frequency"></td>
+            <td [innerText]="scheduling.time"></td>
+            <td>
+                <button (click)="editscheduling(scheduling)" class="btn">
+                    <i class="fas fa-pen"></i>
+                </button>
+
+                <button (click)="deletescheduling(scheduling.userId)" class="btn">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+}
